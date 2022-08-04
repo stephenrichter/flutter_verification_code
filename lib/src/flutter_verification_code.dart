@@ -215,8 +215,14 @@ class _VerificationCodeState extends State<VerificationCode> {
             int _index = index;
 
             while (_value.isNotEmpty && _index < widget.length) {
-              _listControllerText[_index].value =
-                  TextEditingValue(text: _value[0]);
+              _listControllerText[_index].value = TextEditingValue(
+                  text: _value[0],
+                  selection: TextSelection.fromPosition(
+                    TextPosition(
+                      offset: _listControllerText[_index].text.length,
+                      affinity: TextAffinity.downstream,
+                    ),
+                  ));
               _next(_index++);
               _value = _value.substring(1);
             }
